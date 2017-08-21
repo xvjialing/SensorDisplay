@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SensorDisplay</string>
+    <string name="login">登陆</string>
+    <string name="register">注册</string>
+    <string name="forgetpwd"><b>忘记密码 >></b></string>
+
+</resources>
