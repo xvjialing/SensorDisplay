@@ -58,4 +58,56 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_register_switch">
+
+            <TextView
+                android:id="@+id/tv_registerByPhone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="手机注册"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_register_switch_left_pressed"
+                />
+
+            <TextView
+                android:id="@+id/tv_registerByEmail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="邮箱注册"
+                android:gravity="center"
+                android:textColor="@color/white"/>
+
+
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_register_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"></FrameLayout>
+    </LinearLayout>
+
+
+
 </android.support.constraint.ConstraintLayout>

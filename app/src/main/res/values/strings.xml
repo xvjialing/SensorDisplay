@@ -4,4 +4,7 @@
     <string name="register">注册</string>
     <string name="forgetpwd"><b>忘记密码 >></b></string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

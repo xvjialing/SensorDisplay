@@ -76,12 +76,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="手机号"
-            android:background="@null"
             android:drawableLeft="@drawable/ic_account"
-            android:drawablePadding="15dp"
-            android:layout_marginLeft="10dp"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"/>
+            style="@style/EditText1"
+            android:inputType="phone"/>
 
         <View
             android:layout_width="match_parent"
@@ -100,12 +97,8 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:hint="验证码"
-                android:background="@null"
                 android:drawableLeft="@drawable/ic_vertirycode"
-                android:drawablePadding="15dp"
-                android:layout_marginLeft="10dp"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"/>
+                style="@style/EditText1"/>
 
             <Button
                 android:id="@+id/btn_getvertiry"
