@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.iv_logo)
     ImageView ivLogo;
     private int width, height,itemWidth=0,leftBarWidth=0,itemLlWidth=0;
+    private int ivListLeftWidth=0,ivListWidth=0,ivAvaterWidth=0;
 
     private int chooseTag = 1;
     private boolean visibleTag = true;
@@ -102,10 +103,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void itemsVisible(boolean tag) {
-        if (itemWidth==0){
-            itemWidth=ivAvater.getWidth();
+        if (ivAvaterWidth==0){
+            ivAvaterWidth=ivAvater.getWidth();
         }
-
+        if (ivListLeftWidth==0){
+            ivListLeftWidth=ivList.getLeft();
+        }
+        if (ivListWidth==0){
+            ivListWidth=ivList.getWidth();
+        }
         if (leftBarWidth==0){
             leftBarWidth=rlLeftBar.getWidth();
         }
@@ -113,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             itemLlWidth=llDataVisible.getWidth();
         }
         if (tag) {
-            ivList.setImageResource(R.drawable.ic_list_clicked);
+            ivList.setImageResource(R.drawable.ic_list);
             tvUsername.setVisibility(View.VISIBLE);
             tvDataVisible.setVisibility(View.VISIBLE);
             tvMsg.setVisibility(View.VISIBLE);
@@ -122,9 +128,12 @@ public class MainActivity extends AppCompatActivity {
             tvDate.setVisibility(View.VISIBLE);
             tvCompanyName.setVisibility(View.VISIBLE);
 
+
             setWidth(tag);
+
+//            ivList.setTranslationX(ivListLeftWidth);
         } else {
-            ivList.setImageResource(R.drawable.ic_list);
+            ivList.setImageResource(R.drawable.ic_list_clicked);
             tvUsername.setVisibility(View.GONE);
             tvDataVisible.setVisibility(View.GONE);
             tvMsg.setVisibility(View.GONE);
@@ -133,7 +142,12 @@ public class MainActivity extends AppCompatActivity {
             tvDate.setVisibility(View.GONE);
             tvCompanyName.setVisibility(View.GONE);
 
+
             setWidth(tag);
+
+//            int width1=((ivAvaterWidth+40)/2)-(ivListWidth/2);
+//            ivList.setTranslationX(width1);
+
         }
     }
 
@@ -149,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 //            ViewUtils.setViewWidth(llMsgList,itemWidth+50);
 //            ViewUtils.setViewWidth(llSetting,itemWidth+50);
 
-            ViewUtils.setViewWidth(rlLeftBar,itemWidth+40);
+            ViewUtils.setViewWidth(rlLeftBar,ivAvaterWidth+40);
         }
     }
 

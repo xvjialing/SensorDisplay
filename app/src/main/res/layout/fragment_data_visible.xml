@@ -17,9 +17,92 @@
             android:gravity="center_horizontal">
 
             <ImageView
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_iv"
+                android:src="@drawable/park_car"
+                android:scaleType="fitXY"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/bg_iv"/>
+                android:text="道路暂时停车"
+                android:textColor="@color/tv_item_click"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_iv"
+                android:src="@drawable/factory"
+                android:scaleType="fitXY"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="现代工厂"
+                android:textColor="@color/tv_item_click"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="15dp">
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_iv"
+                android:src="@drawable/bridge"
+                android:scaleType="fitXY"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="桥梁监测"
+                android:textColor="@color/tv_item_click"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_iv"
+                android:src="@drawable/farm"
+                android:scaleType="fitXY"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="现代工厂"
+                android:textColor="@color/tv_item_click"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"/>
 
 
         </LinearLayout>
