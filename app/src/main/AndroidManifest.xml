@@ -34,7 +34,10 @@
             android:screenOrientation="landscape"
             android:theme="@style/FullScreen"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
-        <activity android:name=".ui.MainActivity"></activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullScreen"></activity>
     </application>
 
 </manifest>
