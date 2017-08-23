@@ -23,17 +23,18 @@
             android:name=".ui.Login2Activity"
             android:screenOrientation="landscape"
             android:theme="@style/FullScreen"
-            android:windowSoftInputMode="stateHidden|stateUnchanged"/>
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity
             android:name=".ui.LoginMsgActivity"
             android:screenOrientation="landscape"
             android:theme="@style/FullScreen"
-            android:windowSoftInputMode="stateHidden|stateUnchanged"/>
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity
             android:name=".ui.RegisterActivity"
             android:screenOrientation="landscape"
             android:theme="@style/FullScreen"
-            android:windowSoftInputMode="stateHidden|stateUnchanged"></activity>
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity android:name=".ui.MainActivity"></activity>
     </application>
 
 </manifest>

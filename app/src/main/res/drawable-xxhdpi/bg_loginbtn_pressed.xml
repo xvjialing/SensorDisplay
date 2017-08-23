@@ -5,10 +5,8 @@
     <corners
         android:radius="10dp"/>
 
-    <solid android:color="@color/bg_loginbtn" />
+    <solid android:color="@color/white" />
 
-    <stroke android:color="@color/white"
-        android:width="1dp"/>
 
 
 </shape>

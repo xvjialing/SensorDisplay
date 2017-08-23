@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:background="@drawable/bg_loginbtn_selector"
-        android:textColor="@color/white"
+        android:textColor="@color/blue"
         android:layout_marginTop="15dp"/>
 
     <Button

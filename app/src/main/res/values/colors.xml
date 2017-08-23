@@ -12,4 +12,5 @@
     <color name="bg_loginbtn">#e72664</color>
     <color name="bg_loginbtn_pressed">#F16D98</color>
     <color name="black">#000000</color>
+    <color name="blue">#20A0F1</color>
 </resources>
