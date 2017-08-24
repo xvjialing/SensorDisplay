@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,11 +14,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lytech.xvjialing.sensordisplay.R;
+import com.lytech.xvjialing.sensordisplay.app.Constant;
+import com.lytech.xvjialing.sensordisplay.utils.RxBus;
 import com.lytech.xvjialing.sensordisplay.utils.ViewUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -63,7 +70,11 @@ public class MainActivity extends AppCompatActivity {
     private DataVisibleFragment dataVisibleFragment;
     private MsgListFragment msgListFragment;
     private SettingFragment settingFragment;
-
+    private ParkCarFragment parkCarFragment;
+    private ModernFactoryFragment modernFactoryFragment;
+    private BridgeMonitorFragment bridgeMonitorFragment;
+    private WisdomAgricultureFragment wisdomAgricultureFragment;
+    private Subscription subscribe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +82,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        initRxbus();
+
         init();
 
+
         showDataVisibleFragment();
+    }
+
+    private void initRxbus() {
+        subscribe = RxBus.getDefault().toObservable(Integer.class)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        Log.d(TAG, "onNext: "+integer);
+                        click(integer);
+                    }
+                });
     }
 
     private void init() {
@@ -91,13 +128,13 @@ public class MainActivity extends AppCompatActivity {
                 visibleTag = !visibleTag;
                 break;
             case R.id.ll_dataVisible:
-                click(1);
+                click(Constant.FRAGMENT_DATAVISIBLE);
                 break;
             case R.id.ll_msgList:
-                click(2);
+                click(Constant.FRAGMENT_MSGLIST);
                 break;
             case R.id.ll_setting:
-                click(3);
+                click(Constant.FRAGMENT_SETTING);
                 break;
         }
     }
@@ -127,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
             ivLogo.setVisibility(View.VISIBLE);
             tvDate.setVisibility(View.VISIBLE);
             tvCompanyName.setVisibility(View.VISIBLE);
-
 
             setWidth(tag);
 
@@ -170,37 +206,64 @@ public class MainActivity extends AppCompatActivity {
     private void click(int i) {
         if (i != chooseTag) {
             switch (i) {
-                case 1:
+                case Constant.FRAGMENT_DATAVISIBLE:
                     ivDataVisible.setImageResource(R.drawable.ic_data_visible_clicked);
                     tvDataVisible.setTextColor(getResources().getColor(R.color.tv_item_click));
                     showDataVisibleFragment();
                     break;
-                case 2:
+                case Constant.FRAGMENT_MSGLIST:
                     ivMsg.setImageResource(R.drawable.ic_msg_clicked);
                     tvMsg.setTextColor(getResources().getColor(R.color.tv_item_click));
                     showMsgListFragment();
                     break;
-                case 3:
+                case Constant.FRAGMENT_SETTING:
                     ivSetting.setImageResource(R.drawable.ic_setting_clicked);
                     tvSetting.setTextColor(getResources().getColor(R.color.tv_item_click));
                     showSettingFragment();
                     break;
+                case Constant.FRAGMENT_PARK:
+                    showParkCarFragment();
+                    break;
+                case Constant.FRAGMENT_MODERNFACTORY:
+                    showModernFactoryFragment();
+                    break;
+                case Constant.FRAGMENT_BRIDGEMONITOR:
+                    showBridgeMonitorFragment();
+                    break;
+                case Constant.FRAGMENT_WISDOMAGRICULTURE:
+                    showWisdomAgricultureFragment();
+                    break;
             }
 
-            switch (chooseTag) {
-                case 1:
-                    ivDataVisible.setImageResource(R.drawable.ic_data_visible);
-                    tvDataVisible.setTextColor(getResources().getColor(R.color.white));
-                    break;
-                case 2:
-                    ivMsg.setImageResource(R.drawable.ic_msg);
-                    tvMsg.setTextColor(getResources().getColor(R.color.white));
-                    break;
-                case 3:
-                    ivSetting.setImageResource(R.drawable.ic_setting);
-                    tvSetting.setTextColor(getResources().getColor(R.color.white));
-                    break;
+            if (i<4){
+                switch (chooseTag) {
+                    case Constant.FRAGMENT_DATAVISIBLE:
+                        ivDataVisible.setImageResource(R.drawable.ic_data_visible);
+                        tvDataVisible.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                    case Constant.FRAGMENT_MSGLIST:
+                        ivMsg.setImageResource(R.drawable.ic_msg);
+                        tvMsg.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                    case Constant.FRAGMENT_SETTING:
+                        ivSetting.setImageResource(R.drawable.ic_setting);
+                        tvSetting.setTextColor(getResources().getColor(R.color.white));
+                        break;
+//                case Constant.FRAGMENT_PARK:
+//
+//                    break;
+//                case Constant.FRAGMENT_MODERNFACTORY:
+//
+//                    break;
+//                case Constant.FRAGMENT_BRIDGEMONITOR:
+//
+//                    break;
+//                case Constant.FRAGMENT_WISDOMAGRICULTURE:
+//
+//                    break;
+                }
             }
+
 
 
             chooseTag = i;
@@ -253,6 +316,69 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    private void showParkCarFragment(){
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+
+        if (parkCarFragment==null){
+            parkCarFragment=new ParkCarFragment();
+            transaction.add(R.id.rl_rightBar,parkCarFragment);
+        }
+
+        hideFragments(transaction);
+
+        transaction.show(parkCarFragment);
+
+        transaction.commit();
+    }
+
+    private void showModernFactoryFragment(){
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+
+        if (modernFactoryFragment==null){
+            modernFactoryFragment=new ModernFactoryFragment();
+
+            transaction.add(R.id.rl_rightBar,modernFactoryFragment);
+        }
+
+        hideFragments(transaction);
+
+        transaction.show(modernFactoryFragment);
+
+        transaction.commit();
+    }
+
+    private void showBridgeMonitorFragment(){
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+
+        if (bridgeMonitorFragment==null){
+            bridgeMonitorFragment=new BridgeMonitorFragment();
+
+            transaction.add(R.id.rl_rightBar,bridgeMonitorFragment);
+        }
+
+        hideFragments(transaction);
+
+        transaction.show(bridgeMonitorFragment);
+
+        transaction.commit();
+    }
+
+    private void showWisdomAgricultureFragment(){
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+
+        if (wisdomAgricultureFragment==null){
+            wisdomAgricultureFragment=new WisdomAgricultureFragment();
+
+            transaction.add(R.id.rl_rightBar,wisdomAgricultureFragment);
+        }
+
+        hideFragments(transaction);
+
+        transaction.show(wisdomAgricultureFragment);
+
+        transaction.commit();
+    }
+
     private void hideFragments(FragmentTransaction transaction) {
         if (dataVisibleFragment != null) {
             transaction.hide(dataVisibleFragment);
@@ -265,5 +391,37 @@ public class MainActivity extends AppCompatActivity {
         if (settingFragment != null) {
             transaction.hide(settingFragment);
         }
+        if (parkCarFragment!=null){
+            transaction.hide(parkCarFragment);
+        }
+        if (modernFactoryFragment!=null){
+            transaction.hide(modernFactoryFragment);
+        }
+        if (bridgeMonitorFragment!=null){
+            transaction.hide(bridgeMonitorFragment);
+        }
+        if (wisdomAgricultureFragment!=null){
+            transaction.hide(wisdomAgricultureFragment);
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!subscribe.isUnsubscribed()){
+            subscribe.unsubscribe();
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK){
+            if (chooseTag>3){
+                click(Constant.FRAGMENT_DATAVISIBLE);
+                return false;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
