@@ -5,7 +5,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(Integer integer) {
-                        Log.d(TAG, "onNext: "+integer);
+//                        Log.d(TAG, "onNext: "+integer);
                         click(integer);
                     }
                 });
@@ -204,7 +203,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void click(int i) {
-        if (i != chooseTag) {
+        if ((i != chooseTag)) {
+
+            if (i < 4) {
+                switch (chooseTag) {
+                    case Constant.FRAGMENT_DATAVISIBLE:
+                        ivDataVisible.setImageResource(R.drawable.ic_data_visible);
+                        tvDataVisible.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                    case Constant.FRAGMENT_MSGLIST:
+                        ivMsg.setImageResource(R.drawable.ic_msg);
+                        tvMsg.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                    case Constant.FRAGMENT_SETTING:
+                        ivSetting.setImageResource(R.drawable.ic_setting);
+                        tvSetting.setTextColor(getResources().getColor(R.color.white));
+                        break;
+                    default:
+                        ivDataVisible.setImageResource(R.drawable.ic_data_visible);
+                        tvDataVisible.setTextColor(getResources().getColor(R.color.white));
+                        break;
+//                case Constant.FRAGMENT_PARK:
+//
+//                    break;
+//                case Constant.FRAGMENT_MODERNFACTORY:
+//
+//                    break;
+//                case Constant.FRAGMENT_BRIDGEMONITOR:
+//
+//                    break;
+//                case Constant.FRAGMENT_WISDOMAGRICULTURE:
+//
+//                    break;
+                }
+            }
+
             switch (i) {
                 case Constant.FRAGMENT_DATAVISIBLE:
                     ivDataVisible.setImageResource(R.drawable.ic_data_visible_clicked);
@@ -234,36 +267,6 @@ public class MainActivity extends AppCompatActivity {
                     showWisdomAgricultureFragment();
                     break;
             }
-
-            if (i<4){
-                switch (chooseTag) {
-                    case Constant.FRAGMENT_DATAVISIBLE:
-                        ivDataVisible.setImageResource(R.drawable.ic_data_visible);
-                        tvDataVisible.setTextColor(getResources().getColor(R.color.white));
-                        break;
-                    case Constant.FRAGMENT_MSGLIST:
-                        ivMsg.setImageResource(R.drawable.ic_msg);
-                        tvMsg.setTextColor(getResources().getColor(R.color.white));
-                        break;
-                    case Constant.FRAGMENT_SETTING:
-                        ivSetting.setImageResource(R.drawable.ic_setting);
-                        tvSetting.setTextColor(getResources().getColor(R.color.white));
-                        break;
-//                case Constant.FRAGMENT_PARK:
-//
-//                    break;
-//                case Constant.FRAGMENT_MODERNFACTORY:
-//
-//                    break;
-//                case Constant.FRAGMENT_BRIDGEMONITOR:
-//
-//                    break;
-//                case Constant.FRAGMENT_WISDOMAGRICULTURE:
-//
-//                    break;
-                }
-            }
-
 
 
             chooseTag = i;
